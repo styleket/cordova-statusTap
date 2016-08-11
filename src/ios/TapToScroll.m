@@ -25,14 +25,10 @@
 
 @synthesize recognizer;
 
-- (CDVPlugin*)initWithWebView:(UIWebView*)theWebView {
-  self = [super initWithWebView:theWebView];
-  if (self) {
-    initialized = NO;
-    overlay = [[UIWindow alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
-    webView = theWebView;
-  }
-  return self;
+- (void) pluginInitialize {
+  // Initialization code here
+  initialized = NO;
+  overlay = [[UIWindow alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
 }
 
 -(void) initListener:(CDVInvokedUrlCommand*)command {
