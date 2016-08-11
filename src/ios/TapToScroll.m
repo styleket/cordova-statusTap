@@ -57,8 +57,12 @@
 }
 
 -(void) tapped:(UITapGestureRecognizer *)sender {
-    NSLog(@"Status Bar Tapped Event");
-    [webView stringByEvaluatingJavaScriptFromString:@"var evt = document.createEvent(\"Event\"); evt.initEvent(\"statusTap\",true,true); window.dispatchEvent(evt);"];
+    if ([self.webView isKindOfClass:[UIWebView class]]) {
+      NSLog(@"Status Bar Tapped Event");
+      CGPoint offset = self.webView.scrollView.contentOffset;
+      [self.webView.scrollView setContentOffset:offset animated:NO];
+      [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:@"var evt = document.createEvent(\"Event\"); evt.initEvent(\"statusTap\",true,true); window.dispatchEvent(evt);"];
+    }
 }
 
 -(void) setupRotationListener {
